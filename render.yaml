@@ -1,0 +1,22 @@
+# Render Blueprint: one Docker web service (API + UI) + managed PostgreSQL + persistent disk for evidence.
+# Check Render's current plan limits before choosing a plan; free instances sleep and have no persistent disk.
+databases:
+  - name: azmuthix-db
+    plan: basic-256mb
+    databaseName: azmuthix
+    user: azmuthix
+services:
+  - type: web
+    name: azmuthix
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    disk: { name: evidence, mountPath: /data, sizeGB: 5 }
+    envVars:
+      - { key: AZMUTHIX_ENV, value: production }
+      - { key: AZMUTHIX_SECRET_KEY, generateValue: true }
+      - { key: AZMUTHIX_ALLOW_REGISTRATION, value: "false" }
+      - { key: DATABASE_URL, fromDatabase: { name: azmuthix-db, property: connectionString } }
+      - { key: ANTHROPIC_API_KEY, sync: false }
+      - { key: VIRUSTOTAL_API_KEY, sync: false }
+      - { key: ABUSEIPDB_API_KEY, sync: false }

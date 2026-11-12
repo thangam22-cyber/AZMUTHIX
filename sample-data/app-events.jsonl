@@ -1,0 +1,7 @@
+{"timestamp": "2026-10-10T02:40:00Z", "host": "db-01", "user": "svc_app", "src_ip": "10.0.0.31", "event": "Query executed in 50 ms", "level": "info"}
+{"timestamp": "2026-10-10T02:40:20Z", "host": "db-01", "user": "svc_app", "src_ip": "10.0.0.31", "event": "Query executed in 26 ms", "level": "info"}
+{"timestamp": "2026-10-10T02:40:40Z", "host": "db-01", "user": "svc_app", "src_ip": "10.0.0.31", "event": "Query executed in 83 ms", "level": "info"}
+{"timestamp": "2026-10-10T02:41:00Z", "host": "db-01", "user": "svc_app", "src_ip": "10.0.0.31", "event": "Query executed in 19 ms", "level": "info"}
+{"timestamp": "2026-10-10T02:41:20Z", "host": "db-01", "user": "svc_app", "src_ip": "10.0.0.31", "event": "Query executed in 68 ms", "level": "info"}
+{"timestamp": "2026-10-10T02:41:40Z", "host": "db-01", "user": "svc_app", "src_ip": "10.0.0.31", "event": "Query executed in 12 ms", "level": "info"}
+{"timestamp": "2026-10-10T02:51:00Z", "host": "db-01", "user": "svc_app", "src_ip": "192.0.2.77", "event": "Login from unexpected address; outbound connection to cdn-fastcache.example", "level": "warning"}

@@ -1,0 +1,35 @@
+# Production-like stack: AZMUTHIX (API + UI) + PostgreSQL. Run:  docker compose up --build
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: azmuthix
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: azmuthix
+    volumes: [dbdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U azmuthix"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      DATABASE_URL: postgresql+psycopg://azmuthix:${POSTGRES_PASSWORD}@db:5432/azmuthix
+      AZMUTHIX_SECRET_KEY: ${AZMUTHIX_SECRET_KEY:?set AZMUTHIX_SECRET_KEY in .env}
+      AZMUTHIX_ALLOW_REGISTRATION: ${AZMUTHIX_ALLOW_REGISTRATION:-false}
+      AZMUTHIX_CORS_ORIGINS: ${AZMUTHIX_CORS_ORIGINS:-}
+      AZMUTHIX_MAX_UPLOAD_MB: ${AZMUTHIX_MAX_UPLOAD_MB:-25}
+      AZMUTHIX_RETENTION_DAYS: ${AZMUTHIX_RETENTION_DAYS:-0}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      VIRUSTOTAL_API_KEY: ${VIRUSTOTAL_API_KEY:-}
+      ABUSEIPDB_API_KEY: ${ABUSEIPDB_API_KEY:-}
+    volumes: [evidence:/data/evidence]
+    ports: ["8000:8000"]
+volumes:
+  dbdata:
+  evidence:

@@ -1,0 +1,2 @@
+AZMUTHIX harmless test artefact. Contains no code.
+Synthetic file for hash/integrity demos.

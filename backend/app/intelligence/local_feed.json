@@ -1,0 +1,21 @@
+{
+  "_meta": {"name": "AZMUTHIX demo feed", "note": "Bundled sample data for offline development. Addresses use RFC 5737 documentation ranges and example domains. Replace with a real feed via AbuseIPDB / VirusTotal keys.", "updated": "2026-10-11"},
+  "ipv4": {
+    "203.0.113.45": {"verdict": "malicious", "score": 92, "tags": ["ssh-bruteforce", "scanner"], "summary": "Demo feed: repeated SSH brute-force source."},
+    "198.51.100.23": {"verdict": "suspicious", "score": 64, "tags": ["web-scanner"], "summary": "Demo feed: vulnerability scanning activity."},
+    "192.0.2.77": {"verdict": "malicious", "score": 88, "tags": ["c2"], "summary": "Demo feed: command-and-control staging host."}
+  },
+  "domain": {
+    "update-secure-login.example": {"verdict": "malicious", "score": 90, "tags": ["phishing"], "summary": "Demo feed: credential-phishing lookalike."},
+    "cdn-fastcache.example": {"verdict": "suspicious", "score": 60, "tags": ["malware-delivery"], "summary": "Demo feed: serves second-stage payloads."}
+  },
+  "sha256": {
+    "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f": {"verdict": "suspicious", "score": 50, "tags": ["eicar", "test-file"], "summary": "EICAR antivirus test file. Harmless by design; confirms scanner/AV wiring."}
+  },
+  "md5": {
+    "44d88612fea8a8f36de82e1278abb02f": {"verdict": "suspicious", "score": 50, "tags": ["eicar", "test-file"], "summary": "EICAR antivirus test file (MD5). Harmless by design."}
+  },
+  "cve": {
+    "CVE-2021-44228": {"verdict": "malicious", "score": 95, "tags": ["log4shell", "rce", "kev"], "summary": "Apache Log4j2 JNDI remote code execution (Log4Shell). Actively exploited; listed in CISA KEV."}
+  }
+}
